@@ -4,11 +4,6 @@ package com._520it.smis.until;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.management.RuntimeErrorException;
-
 import com._520it.smis.handler.IResultSetHandler;
 
 public class JdbcTemplate {

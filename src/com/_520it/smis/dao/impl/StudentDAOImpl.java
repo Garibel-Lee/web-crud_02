@@ -1,12 +1,11 @@
 package com._520it.smis.dao.impl;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import com._520it.smis.dao.IStudentDAO;
 import com._520it.smis.domain.Student;
-import com._520it.smis.handler.IResultSetHandler;
+import com._520it.smis.handler.BeanHandler;
+import com._520it.smis.handler.BeanlistHandler;
 import com._520it.smis.until.JdbcTemplate;
 
 public class StudentDAOImpl implements IStudentDAO {
@@ -24,17 +23,19 @@ public class StudentDAOImpl implements IStudentDAO {
 	}
 
 	public Student get(Long id) {
-		List<Student> list= JdbcTemplate.query("select * from t_student where id = ?",new StudentResultSetHandler(),id);
-		return list.size()==1?list.get(0):null;
+		//List<Student> list= JdbcTemplate.query("select * from t_student where id = ?",new StudentResultSetHandler(),id);
+		//return list.size()==1?list.get(0):null;
+		return  JdbcTemplate.query("select * from t_student where id = ?",new BeanHandler<>(Student.class),id);
 	}
 
 	public List<Student> listall() {
-	 return JdbcTemplate.query("select * from t_student",new StudentResultSetHandler());
+	 //return JdbcTemplate.query("select * from t_student",new StudentResultSetHandler());
+	return JdbcTemplate.query("select * from t_student",new BeanlistHandler<>(Student.class));
 	}
 }
 
 //处理student代码把结果集合每一行数据封装成student对象
-class StudentResultSetHandler implements IResultSetHandler<List<Student>>{
+/*class StudentResultSetHandler implements IResultSetHandler<List<Student>>{
 	public List<Student> handle(ResultSet rs) throws Exception {
 		List<Student> list=new ArrayList<Student>();
 		while (rs.next()) {
@@ -47,4 +48,4 @@ class StudentResultSetHandler implements IResultSetHandler<List<Student>>{
 		return list;
 	}
 	
-}
+}*/

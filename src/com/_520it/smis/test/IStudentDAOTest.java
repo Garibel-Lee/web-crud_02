@@ -1,6 +1,7 @@
 package com._520it.smis.test;
 
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.junit.Test;
@@ -8,6 +9,10 @@ import org.junit.Test;
 import com._520it.smis.dao.IStudentDAO;
 import com._520it.smis.dao.impl.StudentDAOImpl;
 import com._520it.smis.domain.Student;
+import com._520it.smis.handler.IResultSetHandler;
+import com._520it.smis.until.JdbcTemplate;
+
+import lombok.javac.ResolutionResetNeeded;
 
 public class IStudentDAOTest {
 	private  IStudentDAO dao=new StudentDAOImpl();
@@ -43,6 +48,18 @@ public class IStudentDAOTest {
 	public void testListall() {
 		List<Student> student = dao.listall();
 		System.out.println(student.toString());
+	}
+	@Test
+	public void testGetCount() throws Exception{
+		String sql="Select COUNT(id) from t_student";
+		Long total=JdbcTemplate.query(sql,new IResultSetHandler<Long>() {
+			public Long handle(ResultSet rs) throws Exception {
+				if(rs.next())
+				return	rs.getLong(1);
+				return 0l;
+			}
+		});
+		System.out.println(total);
 	}
 
 }
