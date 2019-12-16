@@ -3,16 +3,13 @@ package com._520it.smis.test;
 
 import java.sql.ResultSet;
 import java.util.List;
-
 import org.junit.Test;
-
 import com._520it.smis.dao.IStudentDAO;
 import com._520it.smis.dao.impl.StudentDAOImpl;
 import com._520it.smis.domain.Student;
 import com._520it.smis.handler.IResultSetHandler;
 import com._520it.smis.until.JdbcTemplate;
 
-import lombok.javac.ResolutionResetNeeded;
 
 public class IStudentDAOTest {
 	private  IStudentDAO dao=new StudentDAOImpl();
@@ -21,7 +18,7 @@ public class IStudentDAOTest {
 	public void testSave() {
 		 Student stu =new Student();
 		 stu.setAge(12);
-		 stu.setName("元尊");
+		 stu.setName("元ooo尊");
 		 dao.save(stu);
 	}
 

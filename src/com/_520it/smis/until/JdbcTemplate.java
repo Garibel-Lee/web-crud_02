@@ -56,7 +56,8 @@ public class JdbcTemplate {
 			conn=JdbcUntil.getConn();//贾琏
 			ps=conn.prepareStatement(sql);//欲
 			for(int index=0; index<params.length;index++) {
-				ps.setObject(index+1, params[index]);
+				System.out.println("update"+params[index]);
+				ps.setObject(index+1,params[index]);
 			}
 			return ps.executeUpdate();			
 		} catch (Exception e) {
